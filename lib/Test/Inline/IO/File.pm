@@ -36,7 +36,6 @@ the translating to the underlying filesystem themselves if required.
 
 use strict;
 use File::Spec   ();
-use File::chmod  ();
 use File::Path   ();
 use File::Remove ();
 use File::Slurper ();
@@ -197,7 +196,10 @@ sub write {
 	File::Path::mkpath($self->path);
 	my $rv = eval { File::Slurper::write_text($file, $$content, 'latin1', 'auto'); 1 };
 	if ( $rv and $self->readonly ) {
-		File::chmod::symchmod('a-w', $file);
+		my $mode = (stat($file))[2] & 07777;
+		# unset +w flags
+		$mode &= ~0222;
+		chmod $mode, $file;
 	}
 	return $rv;
 }

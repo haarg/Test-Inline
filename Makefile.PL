@@ -4,7 +4,6 @@ all_from       'lib/Test/Inline.pm';
 requires_from  'lib/Test/Inline.pm';
 requires       'Getopt::Long'     => '2.34';
 requires       'File::Find::Rule' => '0.26';
-requires       'File::chmod'      => '0.31';
 requires       'File::Remove'     => '0.37';
 requires       'List::Util'       => '1.19';
 requires       'Config::Tiny'     => '2.00';
