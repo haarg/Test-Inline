@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 # Tests for Test::Inline's check_count functionality
 
 use strict;

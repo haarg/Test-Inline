@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 # Formal testing for Test::Inline.
 # Tests loading and API of classes.
 

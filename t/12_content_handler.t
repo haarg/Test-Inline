@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 # Test as much of Test::Inline::Content (and subclasses)
 
 use strict;

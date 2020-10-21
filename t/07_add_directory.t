@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 # Adding of entire directories
 
 use strict;

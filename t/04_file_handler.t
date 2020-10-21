@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 # Test as much of Test::Inline::IO::File as we can without having
 # to actually write to disk. We might deal with the last ->write method
 # another time

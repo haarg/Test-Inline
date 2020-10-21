@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 # Adding of all .pm files
 
 use strict;

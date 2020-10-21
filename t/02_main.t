@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 # Tests for Test::Inline
 
 use strict;

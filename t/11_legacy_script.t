@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 # Check Test::Inline::Script support for older test styles
 
 use strict;

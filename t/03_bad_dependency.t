@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 # Specific test for missing dependencies
 
 use strict;

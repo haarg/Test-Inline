@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 # Tests the parsing and generation of multiple files
 
 # This test is also used to test the readonly param

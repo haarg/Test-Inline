@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 # Regression testing for rt.cpan.org
 
 use strict;
