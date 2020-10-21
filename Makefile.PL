@@ -8,7 +8,7 @@ requires       'File::chmod'      => '0.31';
 requires       'File::Remove'     => '0.37';
 requires       'List::Util'       => '1.19';
 requires       'Config::Tiny'     => '2.00';
-requires       'File::Flat'       => '1.00';
+requires       'File::Path'       => '0';
 test_requires  'Test::More'       => '0.42';
 test_requires  'Test::ClassAPI'   => '1.02';
 install_script 'inline2test';

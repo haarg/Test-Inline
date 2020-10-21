@@ -37,7 +37,9 @@ the translating to the underlying filesystem themselves if required.
 use strict;
 use File::Spec   ();
 use File::chmod  ();
+use File::Path   ();
 use File::Remove ();
+use File::Slurper ();
 
 use vars qw{$VERSION};
 BEGIN {
@@ -159,10 +161,9 @@ Returns a SCALAR reference, or C<undef> on error.
 sub read {
 	my $self    = shift;
 	my $file    = $self->_path(shift) or return undef;
-	require File::Flat;
-	my $content = File::Flat->slurp($file) or return undef;
-	$$content =~ s/\015{1,2}\012|\015|\012/\n/g;
-	$content;
+	my $content = eval { File::Slurper::read_text($file, 'latin1') } or return undef;
+	$content =~ s/\015{1,2}\012|\015|\012/\n/g;
+	\$content;
 }
 
 =pod
@@ -181,8 +182,20 @@ sub write {
 		File::Remove::remove($file) or return undef;
 
 	}
-	require File::Flat;
-	my $rv = File::Flat->write( $file, @_ );
+	my $content;
+	if (ref $_[0]) {
+		if (UNIVERSAL::isa($_[0], 'ARRAY')) {
+			$content = \join('', @_);
+		}
+		elsif (UNIVERSAL::isa($content, 'SCALAR')) {
+			$content = $_[0];
+		}
+	}
+	else {
+		$content = \$_[0];
+	}
+	File::Path::mkpath($self->path);
+	my $rv = eval { File::Slurper::write_text($file, $$content, 'latin1', 'auto'); 1 };
 	if ( $rv and $self->readonly ) {
 		File::chmod::symchmod('a-w', $file);
 	}
