@@ -6,6 +6,7 @@ requires       'Getopt::Long'     => '2.34';
 requires       'File::Find::Rule' => '0.26';
 requires       'File::chmod'      => '0.31';
 requires       'File::Remove'     => '0.37';
+requires       'List::Util'       => '1.19';
 requires       'Config::Tiny'     => '2.00';
 requires       'File::Flat'       => '1.00';
 test_requires  'Test::More'       => '0.42';

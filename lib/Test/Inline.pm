@@ -126,8 +126,6 @@ will be run after the numbered tests.
 
 use 5.006;
 use strict;
-use IO::Handle                     ();
-use List::Util                1.19 ();
 use File::Spec                0.80 ();
 use File::Slurp            9999.04 ();
 use Params::Util              0.21 ();
