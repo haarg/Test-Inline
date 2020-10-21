@@ -80,7 +80,7 @@ sub new {
 	my $self  = $class->SUPER::new() or return undef;
 
 	# Load, check and add the file
-	my $template = File::Slurp::read_file( $file ) or return undef;
+	my $template = File::Slurper::read_text( $file, 'latin1', 'auto' ) or return undef;
 	$template =~ /\[%\s+tests\s+\%\]/              or return undef;
 	# $template =~ /\[\%\s+plan\s+\%\]/              or return undef;
 	$self->{template} = $template;

@@ -11,6 +11,7 @@ BEGIN {
 use File::Spec::Functions ':ALL';
 use Test::More tests => 7;
 use Test::Inline ();
+use File::Slurper ();
 
 
 
@@ -19,18 +20,18 @@ use Test::Inline ();
 #####################################################################
 # Test the examples from Inline.pm
 {
-	my $inline_file = File::Slurp::read_file(
+	my $inline_file = File::Slurper::read_text(
 		catfile( 't', 'data', '10_legacy_extract', 'Inline.pm' ),
-		scalar_ref => 1,
-		) or die "Failed to load Inline.pm test file";
-	is( ref($inline_file), 'SCALAR', 'Loaded Inline.pm examples' );
+		'latin1', 'auto',
+		);
+	ok( $inline_file, 'Loaded Inline.pm examples' );
 
 	# Create the Inline object
 	my $Inline = Test::Inline->new();
 	isa_ok( $Inline, 'Test::Inline' );	
 
 	# Add the sample source code
-	ok( $Inline->_add_source( $inline_file ), 'Inline.pm examples added' );
+	ok( $Inline->_add_source( \$inline_file ), 'Inline.pm examples added' );
 
 	# Check the results
 	my $Script = $Inline->class('My::Pirate');

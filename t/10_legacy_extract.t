@@ -8,7 +8,7 @@ BEGIN {
 	$^W = 1;
 }
 
-use File::Slurp ();
+use File::Slurper ();
 use File::Spec::Functions ':ALL';
 use Test::More tests => 7;
 use Test::Inline::Extract ();
@@ -20,13 +20,13 @@ use Test::Inline::Extract ();
 #####################################################################
 # Test the examples from Inline.pm
 {
-	my $inline_file = File::Slurp::read_file(
+	my $inline_file = File::Slurper::read_text(
 		catfile( 't', 'data', '10_legacy_extract', 'Inline.pm' ),
-		scalar_ref => 1,
-		) or die "Failed to load Inline.pm test file";
-	is( ref($inline_file), 'SCALAR', 'Loaded Inline.pm examples' );
+		'latin1', 'auto',
+		);
+	ok( $inline_file, 'Loaded Inline.pm examples' );
 
-	my $Extract = Test::Inline::Extract->new( $inline_file );
+	my $Extract = Test::Inline::Extract->new( \$inline_file );
 	isa_ok( $Extract, 'Test::Inline::Extract' );
 
 	my $elements = $Extract->elements;

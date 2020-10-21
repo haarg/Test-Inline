@@ -18,7 +18,7 @@ L<Test::Inline> from source files.
 
 use strict;
 use List::Util   ();
-use File::Slurp  ();
+use File::Slurper ();
 use Params::Util qw{_CLASS _INSTANCE _SCALAR};
 
 use vars qw{$VERSION};
@@ -67,7 +67,7 @@ sub _source {
 	return undef unless defined $_[0];
 	return shift if     _SCALAR($_[0]);
 	return undef if     ref $_[0];
-	File::Slurp::read_file( shift, scalar_ref => 1 );
+	\File::Slurper::read_text( shift, 'latin1', 'auto' );
 }
 
 =pod
